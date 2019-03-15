@@ -38,19 +38,48 @@ public class asgmt3{
         }
 
         public void inOrder(Node curr){
-            
+            if(curr == null)
+                return;
+            inOrder(curr.left);
+            System.out.print(curr.word + "  ");
+            inOrder(curr.right);
         }
 
         public void preOrder(Node curr){
-
+            if(curr == null)
+                return;
+            System.out.print(curr.word + "  ");
+            preOrder(curr.left);
+            preOrder(curr.right);
         }
         
         public void postOrder(Node curr){
-
+            if(curr == null)
+                return;
+            postOrder(curr.left);
+            postOrder(curr.right);
+            System.out.print(curr.word + "  ");
         }
 
-        public void maximumDepth(Node curr){
+        public int maximumDepth(Node curr){
+            if(curr == null)
+                return 0;
+            else{
+                int lDepth = maximumDepth(curr.left);
+                int rDepth = maximumDepth(curr.right);
 
+                if(lDepth > rDepth)
+                    return (lDepth + 1);
+                else
+                    return (rDepth + 1);
+            }
+        }
+
+        public void initialTraverse(Node curr){
+            if(curr == null)
+                return;
+            initialTraverse(curr.left);
+            initialTraverse(curr.right);
         }
 
     }
