@@ -5,6 +5,8 @@ public class asgmt3{
 
     public static class BinaryTree{
         Node root;
+        int counter = 0;
+        int numUniqueWords = 0;
 
         private static class Node{
             String word;
@@ -75,23 +77,42 @@ public class asgmt3{
             }
         }
 
-        public void initialTraverse(Node curr){
+        public void numOfWordsTraverse(Node curr){
             if(curr == null)
                 return;
-            initialTraverse(curr.left);
-            initialTraverse(curr.right);
+            counter++;
+            numOfWordsTraverse(curr.left);
+            numOfWordsTraverse(curr.right);
+        }
+
+        public void uniqueWordsTraverse(Node curr){
+            if(curr == null)
+                return;
+            if(curr.frequency == 1){
+                numUniqueWords++;
+            }
+            uniqueWordsTraverse(curr.left);
+            uniqueWordsTraverse(curr.right);
         }
 
     }
 
     public static void createBinaryTree(BinaryTree bnt, String[] words){
-        System.out.println("Creating the Binary Tree...");
         for(int i = 0; i < words.length; i++){
             bnt.root = bnt.insert(bnt.root, words[i]);
         }
     }
 
     public static void initialOutput(BinaryTree bnt){
+        bnt.numOfWordsTraverse(bnt.root);
+        System.out.println("Total number of words is: " + bnt.counter);
+
+        bnt.uniqueWordsTraverse(bnt.root);
+        System.out.println("Number of unique words is: " + bnt.numUniqueWords);
+
+        
+        System.out.println("The maximum height of the tree is: " + bnt.maximumDepth(bnt.root));
+
     }
 
     public static String[] readFile(String file){
@@ -101,8 +122,11 @@ public class asgmt3{
         try{
             text = new File(file);
             br = new BufferedReader(new FileReader(text));
+            sentence += br.readLine() + " ";
             while(br.readLine() != null){
                 sentence += br.readLine() + " ";
+                System.out.println(br.readLine());
+
             } 
         }catch(Exception e) {
 			e.printStackTrace();
@@ -115,6 +139,7 @@ public class asgmt3{
 				e2.printStackTrace();
 			}
         }
+        System.out.println(sentence);
         //This removes all punctuations, turns everything into lowercase and splits it by the spaces
         String[] words = sentence.replaceAll("\\p{P}", "").toLowerCase().split("\\s+");
 
