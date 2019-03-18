@@ -8,6 +8,7 @@ public class asgmt3{
         int counter = 0;
         int numUniqueWords = 0;
         int mostFreq = 0;
+        int found = 0;
 
         private static class Node{
             String word;
@@ -104,17 +105,18 @@ public class asgmt3{
            
         }
 
-        public boolean lookFor(Node curr, String w){
+        public void lookFor(Node curr, String w){
             if(curr == null)
-                return false;
+                return;
             if(curr.word.equals(w)){
                 System.out.println("Found! It appears " + curr.frequency + " times");
-                return true;
+                found = 1;
+                return;
             }else{
                 lookFor(curr.left, w);
                 lookFor(curr.right, w);
                 
-                return false;
+                return;
             }
         }
 
@@ -141,10 +143,10 @@ public class asgmt3{
     }
 
     public static void search(BinaryTree bnt, String word){
-        boolean found = bnt.lookFor(bnt.root, word);
-        if(found == false){ //TODO: fix this
+        bnt.found = 0;
+        bnt.lookFor(bnt.root, word);
+        if(bnt.found == 0)
             System.out.println("Word not found");
-        }
     }
 
     public static String[] readFile(String file){
