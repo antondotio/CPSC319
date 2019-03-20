@@ -175,6 +175,7 @@ public class asgmt3{
 
         return words;
     }
+
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
         System.out.print("Please enter the name of the text file(excluding '.txt'): ");
