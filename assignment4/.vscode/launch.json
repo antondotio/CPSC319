@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - asgmt4",
+            "request": "launch",
+            "mainClass": "asgmt4",
+            "projectName": "assignment4_e8c4cc5b"
+        }
+    ]
+}
