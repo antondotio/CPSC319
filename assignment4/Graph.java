@@ -30,10 +30,8 @@ public class Graph {
 		vis[u] = true;
 
 		for (int i = 0; i < n; i++) {
-			if (adj[u][i] != 0) {
-				pr.println(u + " - " + i + "\t\t" + adj[u][i]);
-			}
 			if (!vis[i] && adj[u][i] != 0) {
+				pr.println(u + " - " + i + "\t\t" + adj[u][i]);
 				this.DFS(i, vis, pr);
 			}
 		}
